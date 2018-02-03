@@ -1,0 +1,25 @@
+export const FETCH_MENUS = 'FETCH_MENUS';
+export const FETCH_MENU = 'FETCH_MENU';
+export const FETCH_OPTIONS = 'FETCH_OPTIONS';
+
+export const ADD_ITEM = 'ADD_ITEM';
+export const MODIFY_ITEM = 'MODIFY_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const ONE_MORE_ITEM = 'ONE_MORE_ITEM';
+export const EMPTY_CART = 'EMPTY_CART';
+
+export const NEW_ITEM_FROM_MENU = 'NEW_ITEM_FROM_MENU';
+export const SET_ITEM_FROM_CART = 'SET_ITEM_FROM_CART';
+
+export const CHANGE_OPTION_VALUE = 'CHANGE_OPTION_VALUE';
+export const CHANGE_ADDONS_VALUE = 'CHANGE_ADDONS_VALUE';
+
+export const FETCH_ORDER = 'FETCH_ORDER';
+export const FETCH_ORDERS = 'FETCH_ORDERS';
+
+export const ADD_PAYMENT_SOURCE = 'ADD_PAYMENT_SOURCE';
+export const FETCH_PAYMENT_SOURCES = 'FETCH_PAYMENT_SOURCES';
+
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGOUT = 'USER_LOGOUT'
+
