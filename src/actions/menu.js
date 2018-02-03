@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import { database, auth } from '../firebase';
+// import { database, auth } from '../firebase';
 
 import { FETCH_MENUS, FETCH_MENU, NEW_ITEM_FROM_MENU, FETCH_OPTIONS } from './types';
 import { newItemFromMenu } from './item';
 
 const store = '/srm/midori'
 
-export const fetchMenus = () => { 
+export const fetchMenus = (database) => { 
   return (dispatch, getState) => {
     database.ref('/srm/midori/menus')
       .once('value', snapshot => {
@@ -16,7 +16,7 @@ export const fetchMenus = () => {
   };
 };
 
-export const fetchMenu = (id) => { 
+export const fetchMenu = (database, id) => { 
   return (dispatch, getState) => {
     database.ref(`/srm/midori/menus/${id}`)
       .once('value', snapshot => {
@@ -27,7 +27,7 @@ export const fetchMenu = (id) => {
   };
 };
 
-export const fetchMenusWithOptions = (id, callback) => { 
+export const fetchMenusWithOptions = (database, id, callback) => { 
   return dispatch => {
     database.ref(`${store}/options`)
     .once('value', optionsSnapshot => {
@@ -62,7 +62,7 @@ export const fetchMenusWithOptions = (id, callback) => {
   };
 };
 
-export const fetchMenuWithOptions = (id) => { 
+export const fetchMenuWithOptions = (database, id) => { 
   return dispatch => {
     database.ref(`${store}/options`)
     .once('value', optionsSnapshot => {
@@ -85,7 +85,7 @@ export const fetchMenuWithOptions = (id) => {
   };
 };
 
-export const fetchOptions = (id) => { 
+export const fetchOptions = (database, id) => { 
   return (dispatch, getState) => {
     database.ref(`/srm/midori/options`)
       .on('value', snapshot => {

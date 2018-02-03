@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { database, auth } from '../firebase'
 import { USER_LOGIN, USER_LOGOUT } from './types'
 
 export const userLogIn = (user, admin) => { 

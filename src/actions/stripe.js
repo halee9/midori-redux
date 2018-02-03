@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { database, auth } from '../firebase'
+// import { database, auth } from '../firebase'
 import { ADD_PAYMENT_SOURCE, FETCH_PAYMENT_SOURCES } from './types'
 
-export const addPaymentSource = (token, callback) => {
+export const addPaymentSource = (database, token, callback) => {
   return (dispatch, getState) => {
     const uid = getState().user.uid
     database.ref(`/stripe_customers/${uid}/sources`)
@@ -25,7 +25,7 @@ export const addPaymentSource = (token, callback) => {
 //   }
 // }
 
-export const fetchPaymentSources = (callback) => {
+export const fetchPaymentSources = (database, callback) => {
   return (dispatch, getState) => {
     const uid = getState().user.uid
     console.log("uid: ", uid)
@@ -42,7 +42,7 @@ export const fetchPaymentSources = (callback) => {
   }
 }
 
-export const removePaymentSource = (callback) => {
+export const removePaymentSource = (database, callback) => {
   return (dispatch, getState) => {
     const uid = getState().user.uid
     database.ref(`/stripe_customers/${uid}/sources`)

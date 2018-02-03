@@ -1,4 +1,4 @@
-import firebase, { database } from '../firebase'
+// import firebase, { database } from '../firebase'
 import _ from 'lodash'
 import moment from 'moment'
 import { FETCH_ORDER, FETCH_ORDERS } from './types'
@@ -85,7 +85,7 @@ const convertOrderToRegister = (order) => {
   }
 }
 
-const setOrder = (order, callback) => {
+const setOrder = (database, order, callback) => {
   database.ref(`/register/orderId/counter`)
   .transaction((counter) => {
     console.log("current counter: ", counter)
@@ -113,7 +113,7 @@ const setOrder = (order, callback) => {
 }
 
 
-export const placeOrder = (inputOrder, callback) => {
+export const placeOrder = (firebase, database, inputOrder, callback) => {
   const order = { ...inputOrder, createdAt: firebase.database.ServerValue.TIMESTAMP}
   return (dispatch, getState) => {
     database.ref(`/stripe_customers/${order.uid}/charges`)
@@ -137,7 +137,7 @@ export const placeOrder = (inputOrder, callback) => {
   }
 }
 
-export const fetchOrder = (id) => {
+export const fetchOrder = (database, id) => {
   return (dispatch) => {
     database.ref(`/srm/midori/orders/${id}`)
     .on('value', snapshot => {
@@ -147,11 +147,34 @@ export const fetchOrder = (id) => {
   }
 }
 
-export const fetchOrdersByUser = (uid) => {
+export const fetchOrdersByUser = (database, uid) => {
   return (dispatch) => {
     database.ref(`/srm/midori/orders/${uid}`)
     .once('value', snapshot => {
       dispatch({ type: FETCH_ORDERS, payload: snapshot.val() });
+    })
+  }
+}
+
+//---- for POS
+const base = '/neworders'
+
+export const fetchOrders = (database) => {
+  return (dispatch) => {
+    database.ref(base)
+    .on('value', snapshot => {
+      dispatch({ type: FETCH_ORDERS, payload: snapshot.val() });
+    })
+    
+  }
+}
+
+export const setOrderState = (database, id, state) => {
+  return (dispatch) => {
+    database.ref(`${base}/${id}`)
+    .update({ state })
+    .then((res) => {
+      console.log("res: ", res)
     })
   }
 }

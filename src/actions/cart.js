@@ -1,9 +1,8 @@
 import _ from 'lodash';
-import { database, auth } from '../firebase';
 
 import { ADD_ITEM, MODIFY_ITEM, REMOVE_ITEM, ONE_MORE_ITEM, EMPTY_CART } from './types';
 
-export const addItem = (item, qty=1) => { 
+export const addItem = (database, item, qty=1) => { 
   return {
     type: ADD_ITEM,
     payload: {

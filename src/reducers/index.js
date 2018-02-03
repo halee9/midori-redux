@@ -5,7 +5,8 @@ import authReducer from './authReducer';
 import itemReducer from './itemReducer';
 import orderReducer from './orderReducer';
 import paymentReducer from './paymentReducer';
-
+import kitchenOrderReducer from './kitchenOrderReducer';
+import dashReducer from './dashReducer';
 
 const rootReducer = combineReducers({
   menus: menuReducer,
@@ -14,6 +15,8 @@ const rootReducer = combineReducers({
   user: authReducer,
   order: orderReducer,
   payment: paymentReducer,
+  kitchenOrders: kitchenOrderReducer,
+  sales: dashReducer
 });
 
 export default rootReducer;
